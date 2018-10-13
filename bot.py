@@ -27,15 +27,15 @@ async def dolar(ctx, arg):
             btc_price_r = requests.get(btc_price_url)
             localbtc_ticker_r  = requests.get(localbtc_ticker_url)
         except:
-            message = 'no disponible'
+            message = 'No disponible.'
         else:
             usdbtc = btc_price_r.json()['amount']
             
             ts = ['avg_1h', 'avg_6h', 'avg_12h', 'avg_24h']
-            ts = {'avg_1h': 'promedio una hora',
-                  'avg_6h': 'promedio seis horas',
-                  'avg_12h': 'promedio doce horas',
-                  'avg_24h': 'promedio veinticuatro horas',}
+            ts = {'avg_1h': 'Promedio una **(1)** Hora.',
+                  'avg_6h': 'Promedio seis **(6)** Horas.',
+                  'avg_12h': 'Promedio doce **(12)** Horas.',
+                  'avg_24h': 'Promedio veinticuatro **(24)** Horas.',}
             l = []
             for t in ts:
                 try:
@@ -48,9 +48,9 @@ async def dolar(ctx, arg):
         try:
             dt = requests.get('https://s3.amazonaws.com/dolartoday/data.json').json()['USD']['dolartoday']
         except:
-            message = 'no disponible'
+            message = '**No disponible**'
         else:
-            message = 'dolartoday: {} bs/$'.format(dt)
+            message = 'DolarToday: {} bs/$'.format(dt)
 
     await ctx.send('```{}```'.format(message))
 
@@ -68,7 +68,7 @@ async def new_eightch_threads():
             new_threads = eightch.find_new_threads(catalog, old_catalog)
             if new_threads:
                 for thread in new_threads:
-                    message = 'hilo nuevo: https://8ch.net/{}/res/{}.html'.format(settings.board, thread)
+                    message = '**Hilo nuevo**: https://8ch.net/{}/res/{}.html'.format(settings.board, thread)
                     await channel.send(message)
             else:
                 logging.info('no new threads')

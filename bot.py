@@ -78,6 +78,18 @@ async def new_eightch_threads():
 async def on_ready():
     bot.loop.create_task(new_eightch_threads())
 
+    @bot.event
+async def on_message(message):
+    if message.content.casefold().startswith('toyota'):
+        await message.channel.send('manos diminutas')
+    await bot.process_commands(message)
+    
+    @bot.event
+async def on_message(message):
+    if message.content.casefold().startswith('papo de justme'):
+        await message.channel.send('mhttps://www.youtube.com/watch?v=vjUqUVrXclE')
+    await bot.process_commands(message)
+    
 @bot.event
 async def on_message(message):
     if message.content.casefold().startswith('colomb'):

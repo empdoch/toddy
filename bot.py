@@ -81,13 +81,7 @@ async def on_ready():
     @bot.event
 async def on_message(message):
     if message.content.casefold().startswith('toyota'):
-        await message.channel.send('manos diminutas')
-    await bot.process_commands(message)
-    
-    @bot.event
-async def on_message(message):
-    if message.content.casefold().startswith('papo de justme'):
-        await message.channel.send('mhttps://www.youtube.com/watch?v=vjUqUVrXclE')
+        await message.channel.send('https://tinyurl.com/y9xgvnpj')
     await bot.process_commands(message)
     
 @bot.event
@@ -95,6 +89,13 @@ async def on_message(message):
     if message.content.casefold().startswith('colomb'):
         await message.channel.send('malditos colombianos')
     await bot.process_commands(message)
+    
+    @bot.event
+async def on_message(message):
+    if message.content.casefold().startswith('papo de justme'):
+        await message.channel.send('https://www.tenor.co/tk9c.gif ')
+    await bot.process_commands(message)
+
 
 
 bot.run(settings.token)

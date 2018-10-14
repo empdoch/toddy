@@ -9,7 +9,7 @@ import random
 
 
 logging.basicConfig(level=logging.INFO)
-bot = commands.Bot(command_prefix='!')
+bot = commands.Bot(command_prefix=' ')
 
 CHECK_THREAD_TIME = 300
 
@@ -17,6 +17,8 @@ CHECK_THREAD_TIME = 300
 async def echo(ctx, *args):
     await ctx.send(str(' '.join(args)))
 
+    
+     ############################## Dolar BTC  ############################## 
 @bot.command()
 async def dolar(ctx, arg):
     if arg == 'btc':
@@ -32,10 +34,10 @@ async def dolar(ctx, arg):
             usdbtc = btc_price_r.json()['amount']
             
             ts = ['avg_1h', 'avg_6h', 'avg_12h', 'avg_24h']
-            ts = {'avg_1h': 'promedio una hora',
-                  'avg_6h': 'promedio seis horas',
-                  'avg_12h': 'promedio doce horas',
-                  'avg_24h': 'promedio veinticuatro horas',}
+            ts = {'avg_1h': 'Promedio una hora',
+                  'avg_6h': 'Promedio seis horas',
+                  'avg_12h': 'Promedio doce horas',
+                  'avg_24h': 'Promedio veinticuatro horas',}
             l = []
             for t in ts:
                 try:
@@ -48,12 +50,14 @@ async def dolar(ctx, arg):
         try:
             dt = requests.get('https://s3.amazonaws.com/dolartoday/data.json').json()['USD']['dolartoday']
         except:
-            message = 'no disponible'
+            message = 'No disponible'
         else:
-            message = 'dolartoday: {} bs/$'.format(dt)
+            message = 'DolarToday: {} bs/$'.format(dt)
 
     await ctx.send('```{}```'.format(message))
 
+    ############################## Hilos  ##############################  
+    
 async def new_eightch_threads():
     await bot.wait_until_ready()
     channel = bot.get_channel(settings.channel_id)
@@ -74,6 +78,8 @@ async def new_eightch_threads():
                 logging.info('no new threads')
         await asyncio.sleep(CHECK_THREAD_TIME)
 
+         ############################## Mensajes  ############################## 
+        
 @bot.event
 async def on_ready():
     bot.loop.create_task(new_eightch_threads())
@@ -94,6 +100,19 @@ async def on_message(message):
 async def on_message(message):
     if message.content.casefold().startswith('papo de justme'):
         await message.channel.send('https://www.tenor.co/tk9c.gif ')
+    await bot.process_commands(message)
+
+        
+    @bot.event
+async def on_message(message):
+    if message.content.casefold().startswith('@everyone'):
+        await message.channel.send('=ban  ')
+    await bot.process_commands(message)
+
+      @bot.event
+async def on_message(message):
+    if message.content.casefold().startswith('full bra'):
+        await message.channel.send('callate la boca')
     await bot.process_commands(message)
 
 
